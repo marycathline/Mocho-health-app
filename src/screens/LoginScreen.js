@@ -77,7 +77,7 @@ export default function LoginScreen({ navigation }) {
 
         <Image source={require('../../assets/logo1.png')} style={styles.logo} />
 
-        <Text style={styles.title}>Welcome Back 👋</Text>
+        <Text style={styles.title}>Welcome Back </Text>
         <Text style={styles.subtitle}>
           Sign in to continue your Mocho Health journey
         </Text>
