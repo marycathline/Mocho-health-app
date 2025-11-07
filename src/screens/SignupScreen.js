@@ -14,13 +14,14 @@ import {
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons'; // back arrow icon
-import { SafeAreaView } from 'react-native-safe-area-context'; // to avoid overlap on phones
+import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { theme } from '../theme/colors';
 import { auth, db } from '../../firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
+// ✅ Validation schema
 const SignupSchema = Yup.object().shape({
   fullName: Yup.string().min(2, 'Too short').required('Full name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -38,12 +39,18 @@ const SignupSchema = Yup.object().shape({
 export default function SignupScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
 
+  // ✅ Signup logic
   async function handleSignup(values, actions) {
+    console.log('🟢 handleSignup started');
     actions.setSubmitting(true);
+
     try {
+      // Step 1: Create user in Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
       const user = userCredential.user;
+      console.log('✅ Firebase signup success:', user.uid);
 
+      // Step 2: Save extra info in Firestore
       await setDoc(doc(db, 'users', user.uid), {
         fullName: values.fullName,
         email: values.email,
@@ -53,11 +60,18 @@ export default function SignupScreen({ navigation }) {
         disability: values.disability,
         createdAt: new Date().toISOString(),
       });
+      console.log('🟢 User saved in Firestore');
 
+      // Step 3: Store locally (optional)
       await AsyncStorage.setItem('userId', user.uid);
+
+      // Step 4: Notify + Navigate
       Alert.alert('Signup successful', 'Please log in to continue.');
-      navigation.replace('Login'); // ✅ consistent screen name
+      console.log('🔁 Navigating to Login...');
+      navigation.replace('Login');
+
     } catch (err) {
+      console.log('❌ Signup error:', err);
       if (err.code === 'auth/email-already-in-use') {
         Alert.alert('Email already registered', 'Please log in instead.');
         navigation.replace('Login');
@@ -76,6 +90,7 @@ export default function SignupScreen({ navigation }) {
         style={{ flex: 1 }}
       >
         <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+          
           {/* 🔙 Back Arrow */}
           <TouchableOpacity
             style={styles.backButton}
@@ -109,6 +124,7 @@ export default function SignupScreen({ navigation }) {
           >
             {({ handleChange, handleSubmit, values, errors, touched, isSubmitting, setFieldValue }) => (
               <View style={styles.form}>
+                {/* Input Fields */}
                 {[
                   { label: 'Full Name', name: 'fullName', keyboard: 'default' },
                   { label: 'Email', name: 'email', keyboard: 'email-address' },
@@ -210,18 +226,19 @@ export default function SignupScreen({ navigation }) {
   );
 }
 
+// ✅ Styles
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    paddingTop: 60,
+    paddingTop: 80,
     backgroundColor: '#fff',
     minHeight: '100%',
   },
   backButton: {
     position: 'absolute',
-    top: 40,
+    top: 30,
     left: 20,
-    zIndex: 1,
+    zIndex: 10,
   },
   title: {
     fontSize: 28,
@@ -230,7 +247,12 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     textAlign: 'center',
   },
-  label: { color: theme.primary, fontWeight: '600', marginBottom: 6, fontSize: 15 },
+  label: {
+    color: theme.primary,
+    fontWeight: '600',
+    marginBottom: 6,
+    fontSize: 15,
+  },
   input: {
     backgroundColor: '#f0f4f8',
     padding: 14,
