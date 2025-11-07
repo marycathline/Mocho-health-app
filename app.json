@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "mocho-health-app",
-    "slug": "mocho-health-app",
+    "name": "MochoCare",
+    "slug": "MochoCare",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo1.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/logo1.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,18 +17,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo1.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.mary_okech.mochohealthapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo1.png"
     },
     "extra": {
       "eas": {
-        "projectId": "cf311f28-9df8-4ea7-a9e9-5b8df18c57dc"
+        "projectId": "c3ef46b9-8789-4ed4-982f-8e0cffec739a"
       }
     }
   }

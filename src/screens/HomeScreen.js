@@ -15,25 +15,25 @@ export default function HomeScreen({ navigation }) {
     {
       title: 'Log Period',
       icon: 'calendar',
-      color: '#E91E63',
+      color: '#dc143c', // crimson red
       screen: 'Cycle Tracker',
     },
     {
       title: 'Emergency Help',
-      icon: 'medical',
-      color: '#F44336',
+      icon: 'medkit', 
+      color: '#ff0000', // emergency red
       screen: 'Help',
     },
     {
       title: 'Health Tips',
       icon: 'library',
-      color: theme.primary,
+      color: '#dc143c', // crimson red
       screen: 'Library',
     },
     {
       title: 'Chat Support',
       icon: 'people',
-      color: '#4CAF50',
+      color: '#dc143c', // crimson red
       screen: 'Community',
     },
   ];
@@ -46,7 +46,7 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       <View style={styles.motivationCard}>
-        <Ionicons name="heart" size={24} color="#E91E63" />
+        <Ionicons name="heart" size={24} color="#ff0000" />
         <Text style={styles.motivationText}>
           "Taking care of your health is an investment in your future."
         </Text>
@@ -71,7 +71,7 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Today's Health Tip</Text>
         <View style={styles.tipCard}>
-          <Ionicons name="bulb" size={20} color={theme.primary} />
+          <Ionicons name="bulb" size={20} color="#dc143c" /> 
           <Text style={styles.tipText}>
             Drink at least 8 glasses of water daily to stay hydrated and support your overall health.
           </Text>
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: theme.primary,
+    color: '#dc143c', // crimson red for stats
   },
   statLabel: {
     fontSize: 12,

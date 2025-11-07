@@ -1,10 +1,10 @@
 // Theme colors for Mocho Health App
+// theme/colors.js
 export const theme = {
-  primary: '#7B68EE',      // Medium slate blue
-  secondary: '#9370DB',    // Medium purple 
-  accent: '#6A5ACD',       // Slate blue
-  background: '#F8F9FA',   // Off white
-  surface: '#FFFFFF',      // Pure white
-  text: '#333333',         // Dark gray
-  textSecondary: '#666666' // Medium gray
+  primary: '#dc143c',       // Crimson red as the main brand color
+  background: '#F9FAFB',    // Soft light gray background
+  surface: '#FFFFFF',       // Card / surface color
+  text: '#111827',          // Primary text (near black)
+  textSecondary: '#6B7280', // Secondary text (gray-500)
+  border: '#E5E7EB',        // Border / divider color
 };

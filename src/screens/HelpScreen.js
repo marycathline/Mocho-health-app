@@ -29,13 +29,13 @@ export default function HelpScreen() {
   const emergencyContacts = [
     {
       name: 'MOCHO Health Support',
-      number: '+254700123456',
+      number: '+254710600451',
       description: 'Maternal and reproductive health support',
       available: '24/7'
     },
     {
       name: 'Rusinga Island Health Center',
-      number: '+254700234567',
+      number: '+254710600451',
       description: 'Local health facility',
       available: 'Mon-Fri: 8AM-5PM'
     },
